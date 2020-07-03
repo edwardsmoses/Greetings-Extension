@@ -25,6 +25,7 @@ const App = () => {
     let today = new Date();
     let h = today.getHours();
     let greeting;
+
     if (h > 6 && h < 12) {
       greeting = greetings.morning;
     } else if (h >= 12 && h < 17) {
@@ -36,7 +37,7 @@ const App = () => {
     }
 
     setappState({ greeting });
-    setTimeout(startTime, 1000);
+    // setTimeout(startTime, 1000);
   }
 
 
