@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+
+const App = () => {
+
+  const greetings = {
+    morning: "Good morning",
+    noon: "Good afternoon",
+    evening: "Good evening",
+    night: "Good night",
+  };
+
+  const [appState, setappState] = React.useState({
+    greeting: greetings.morning
+  });
+
+  React.useEffect(() => {
+    startTime();
+    return () => {
+
+    }
+  });
+
+  const startTime = () => {
+    let today = new Date();
+    let h = today.getHours();
+    let greeting;
+    if (h > 6 && h < 12) {
+      greeting = greetings.morning;
+    } else if (h >= 12 && h < 17) {
+      greeting = greetings.noon;
+    } else if (h >= 17 && h < 20) {
+      greeting = greetings.evening;
+    } else {
+      greeting = greetings.night;
+    }
+
+    setappState({ greeting });
+    setTimeout(startTime, 1000);
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{appState.greeting}</h1>
     </div>
   );
-}
+
+};
 
 export default App;
